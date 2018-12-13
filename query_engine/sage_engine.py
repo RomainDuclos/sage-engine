@@ -20,6 +20,7 @@ class TooManyResults(Exception):
 
 async def executor(plan, queue, limit):
     """Executor used to evaluated a plan under a time quota"""
+    print("Executor")
     try:
         while plan.has_next():
             value = await plan.next()
@@ -56,6 +57,7 @@ class SageEngine(object):
         queue = Queue()
         loop = get_event_loop()
         query_done = False
+        print("SageEngine.execute()")
         try:
             task = wait_for(executor(plan, queue, limit), timeout=quota)
             loop.run_until_complete(task)

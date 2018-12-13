@@ -13,6 +13,7 @@ from functools import reduce
 
 def build_query_plan(query, dataset, default_graph, saved_plan=None):
     """Build a pipeline of iterators used to evaluate a query"""
+    print("Building query plan. Dataset " + str(dataset))
     cardinalities = []
     if saved_plan is not None:
         return load(saved_plan, dataset), []
